@@ -15,7 +15,6 @@ import com.jihoon.board.service.UserService;
 @RequestMapping("api/user/")
 public class UserController {
 	
-	// auto
 	@Autowired UserService userService;
 
 	@PostMapping("")
