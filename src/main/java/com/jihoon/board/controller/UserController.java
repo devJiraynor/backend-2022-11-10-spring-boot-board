@@ -22,7 +22,7 @@ public class UserController {
 	
 	@GetMapping("{email}")
 	public ResponseDto<GetUserResponseDto> getUser(@PathVariable("email") String email) {
-		return userSerivce.getUser(email);
+		return userService.getUser(email);
 	}
 
 	@PostMapping("")

@@ -17,11 +17,51 @@ public class UserService {
 	
 	public ResponseDto<GetUserResponseDto> getUser(String email) {
 		// 해당 이메일을 데이터베이스에서 검색
-		
+		MemberEntity member;
+		try {
+			member = memberRepository.findById(email).get();
+		} 
 		// 존재하지않으면 "Not Exist User" 메세지를 포함한 Failed Response 반환
-		
+		catch (Exception e) {
+			return ResponseDto.setFailed("Not Exist User");
+		}
 		// 존재하면 User정보 반환
+		// 1
+//		GetUserResponseDto responseData = new GetUserResponseDto();
+//		responseData.setEmail(member.getEmail());
+//		responseData.setNickname(member.getNickname());
+//		responseData.setProfile(member.getProfile());
+//		responseData.setTelNumber(member.getTelNumber());
+//		responseData.setAddress(member.getAddress());
+//		
+//		return ResponseDto.setSuccess("Get User Success", responseData);
 		
+		// 2
+//		GetUserResponseDto responseData = 
+//				GetUserResponseDto
+//				.builder()
+//				.email(member.getEmail())
+//				.nickname(member.getNickname())
+//				.profile(member.getProfile())
+//				.telNumber(member.getTelNumber())
+//				.address(member.getAddress())
+//				.build();
+//		
+//		return ResponseDto.setSuccess("Get User Success", responseData);
+		
+		// 3
+//		return ResponseDto.setSuccess(
+//				"Get User Success", 
+//				new GetUserResponseDto(
+//					member.getEmail(), 
+//					member.getNickname(), 
+//					member.getProfile(), 
+//					member.getTelNumber(), 
+//					member.getAddress()
+//				)
+//			);
+		
+		return ResponseDto.setSuccess("Get User Success", new GetUserResponseDto(member));
 	}
 
 	public ResponseDto<PostUserResponseDto> postUser(PostUserDto dto) {
